@@ -25,13 +25,13 @@ function App() {
 
     setPassword(pass)
 
-
   }, [length, numberAllowed, charAllowed, setPassword])
 
   const copyPasswordToClipboard = useCallback(() => {
-    passwordRef.current?.select();
+    passwordRef.current?.select(); //?: optional select
     passwordRef.current?.setSelectionRange(0, 999);
-    window.navigator.clipboard.writeText(password)
+    window.navigator.clipboard.writeText(password)  // this window object is available in react but not in NextJs
+                                                    //In NextJs there is server-side rendering
   }, [password])
 
   useEffect(() => {
@@ -52,7 +52,7 @@ function App() {
         />
         <button
         onClick={copyPasswordToClipboard}
-        className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'
+        className='outline-none bg-blue-400 text-white px-3 py-0.5 shrink-0   hover:bg-sky-900 '
         >copy</button>
         
     </div>
